@@ -7,6 +7,31 @@
         "info": ""
     },
     {
+        "id": "3bd7ee50.84c27a",
+        "type": "telegram bot",
+        "botname": "mandarmensajes_bot",
+        "usernames": "",
+        "chatids": "",
+        "baseapiurl": "",
+        "updatemode": "polling",
+        "pollinterval": "300",
+        "usesocks": false,
+        "sockshost": "",
+        "socksprotocol": "socks5",
+        "socksport": "6667",
+        "socksusername": "anonymous",
+        "sockspassword": "",
+        "bothost": "",
+        "botpath": "",
+        "localbotport": "8443",
+        "publicbotport": "8443",
+        "privatekey": "",
+        "certificate": "",
+        "useselfsignedcertificate": false,
+        "sslterminated": false,
+        "verboselogging": false
+    },
+    {
         "id": "d625d457.5e2dc",
         "type": "inject",
         "z": "3af82246.3634ae",
@@ -27,8 +52,8 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 250,
-        "y": 260,
+        "x": 240,
+        "y": 140,
         "wires": [
             [
                 "379fca95.ec2e76"
@@ -47,8 +72,8 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 540,
-        "y": 280,
+        "x": 570,
+        "y": 160,
         "wires": []
     },
     {
@@ -60,8 +85,8 @@
         "method": "get",
         "upload": false,
         "swaggerDoc": "",
-        "x": 380,
-        "y": 440,
+        "x": 220,
+        "y": 240,
         "wires": [
             [
                 "c656aba7.944288"
@@ -75,8 +100,8 @@
         "name": "",
         "statusCode": "",
         "headers": {},
-        "x": 850,
-        "y": 500,
+        "x": 810,
+        "y": 260,
         "wires": []
     },
     {
@@ -98,11 +123,105 @@
         "from": "",
         "to": "",
         "reg": false,
-        "x": 600,
-        "y": 480,
+        "x": 520,
+        "y": 260,
         "wires": [
             [
                 "c2380ca8.0463"
+            ]
+        ]
+    },
+    {
+        "id": "1705e671.a7a44a",
+        "type": "telegram receiver",
+        "z": "3af82246.3634ae",
+        "name": "Message Receiver",
+        "bot": "3bd7ee50.84c27a",
+        "saveDataDir": "",
+        "filterCommands": false,
+        "x": 210,
+        "y": 360,
+        "wires": [
+            [
+                "1b6d6193.beebd6"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "cae29d08.955e4",
+        "type": "inject",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 180,
+        "y": 460,
+        "wires": [
+            [
+                "845949f.ef18cb8"
+            ]
+        ]
+    },
+    {
+        "id": "1b6d6193.beebd6",
+        "type": "debug",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 470,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "b5476fdd.c21ef",
+        "type": "telegram sender",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "bot": "3bd7ee50.84c27a",
+        "haserroroutput": false,
+        "outputs": 1,
+        "x": 600,
+        "y": 460,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "845949f.ef18cb8",
+        "type": "function",
+        "z": "3af82246.3634ae",
+        "name": "",
+        "func": "msg.payload={\n    \"chatId\": -874443798,\n    \"type\":\"message\",\n    \"content\":\"Respuesta desde NodeRed\"\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 360,
+        "y": 460,
+        "wires": [
+            [
+                "b5476fdd.c21ef"
             ]
         ]
     }
